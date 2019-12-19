@@ -9,12 +9,9 @@ program.parse(process.argv);
 const packageJson = require("./package.json")
 const version = packageJson.version
 
-
-console.log('version', version);
 let newVersion = program.args[0]
 const checkVersion = (version) => {
   const arr = version.split('.')
-  console.log(typeof arr[0]);
   if (arr.length !== 3) {
     return false
   }
@@ -53,6 +50,8 @@ async function publishVersion (version) {
   await exec(`git tag -a ${version} -m "publish ${version}"`)
   await exec(`git push --tags`)
   logger.success('tag')
-
+  await exec(`npm publish`)
+  // 必须使用npm执行假如没有登陆yarn得话
+  logger.success('publish sucess')
 }
 publishVersion(newVersion)
