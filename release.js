@@ -53,8 +53,6 @@ async function publishVersion (version) {
   await exec(`git tag -a ${version} -m "publish ${version}"`)
   await exec(`git push --tags`)
   logger.success('tag')
-  await exec(`npm publish`)
-  logger.success('publish')
 
 }
 publishVersion(newVersion)
