@@ -2,6 +2,7 @@ const program = require("commander");
 const util = require('util');
 const exec = util.promisify(require('child_process').exec);
 const fs = require('fs')
+const logger = require('./lib/logger')
 
 program.parse(process.argv);
 
@@ -44,8 +45,16 @@ fs.writeFileSync('./package.json', JSON.stringify(packageJson, null, '\t'))
 async function publishVersion (version) {
   await exec('git add .')
   await exec(`git commit -m "publish ${version}"`)
+  logger.success('commit')
+  await exec(`git pull`)
+  logger.success('pull')
+  await exec(`git push`)
+  logger.success('push')
   await exec(`git tag -a ${version} -m "publish ${version}"`)
-  await exec(`git push origin --tags`)
+  await exec(`git push --tags`)
+  logger.success('tag')
   await exec(`npm publish`)
+  logger.success('publish')
+
 }
 publishVersion(newVersion)
