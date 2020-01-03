@@ -3,11 +3,15 @@
 
 # 安装项目
 
-> yarn global add lmini
+```base
+  yarn global add lmini
+```
 
 # 创建项目
 
-> lmini init project-mini
+```base
+  lmini init project-mini
+```
 
 使用这条命令会下载 [小程序模板](https://github.com/AboyL/l-mini) 项目
 里面内置了
@@ -24,11 +28,17 @@
 具体内容可以参考项目该项目的文档
 
 # 创建页面
-> lmini g page pageDir/pageName
+```base
+  lmini g page pageDir/pageName
+```
 
 # 创建组件
-> lmini g component componentDir/componentName
+```base
+  lmini g component componentDir/componentName
+```
 
 或者
 
-> lmini g comp componentDir/componentName
+```base
+  lmini g comp componentDir/componentName
+```
